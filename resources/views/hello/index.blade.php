@@ -19,6 +19,7 @@
                     {{ $data[$counter] }}
                 </li>
                 <p>はぁ！？</p>
+                <p>oioi</p>
                 @php
                     $counter++;
                 @endphp
