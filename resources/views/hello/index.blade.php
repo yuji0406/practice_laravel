@@ -18,6 +18,7 @@
                 <li>
                     {{ $data[$counter] }}
                 </li>
+                <p>はぁ！？</p>
                 @php
                     $counter++;
                 @endphp
