@@ -7,20 +7,20 @@ use Illuminate\Http\Response;
 
 class HelloController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = [
-            ['name' => '山田太郎', 'mail' => 'example@sample.com'],
-            ['name' => '山田花子', 'mail' => 'example1@sample.com'],
-            ['name' => '田中次郎', 'mail' => 'example2@sample.com'],
-        ];
-        $message = "お前まじキモすぎ";
-        
-        return view('hello.index', ['data' => $data, 'message' => $message]);
+        return view('hello.index', ['msg' => 'フォームを入力：']);
     }
 
     public function post(Request $request)
     {
-        return view('hello.index', ['msg' => $request->msg]);
+        $validate_rule = [
+            'name' => 'required',
+            'mail' => 'email',
+            'age' => 'numeric|between:0, 150',
+        ];
+        $this->validate($request, $validate_rule);
+
+        return view('hello.index', ['msg' => '正しく入力されました！']);
     }
 }
