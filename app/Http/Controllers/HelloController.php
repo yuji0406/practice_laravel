@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use App\Http\Requests\HelloRequest;
 use Illuminate\Support\Facades\Validator;
 
+
 class HelloController extends Controller
 {
     public function index(Request $request)
@@ -25,22 +26,32 @@ class HelloController extends Controller
         return view('hello.index', ['msg' => $msg, ]);
     }
 
-    public function post(HelloRequest $request)
+    public function post(Request $request)
     {
         $rules = [
-            'name' => 'requied',
+            'name' => 'required',
             'mail' => 'email',
-            'age' => 'numeric|between:0,150',
+            'age' => 'numeric',
         ];
 
         $messages = [
             'name.required' => '名前は必ず入力して下さい。',
             'mail.email' => 'メールアドレスが必要です。',
             'age.numeric' => '年齢を整数でご記入ください。',
-            'age.between' => '年齢は0~150歳の間で入力して下さい。',
+            'age.min' => '年齢は0歳以上で記入して下さい',
+            'age.max' => '年齢は200歳以下で入力して下さい。',
         ];
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
+
+        $validator->sometimes('age', 'min:0', function($input) {
+            return !is_int($input->age);
+        });
+
+        $validator->sometimes('age', 'max:200', function($input) {
+            return !is_int($input->age);
+        });
+
 
         if ($validator->fails()) {
             return redirect('/hello')
