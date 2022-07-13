@@ -8,20 +8,28 @@
 @endsection
 
 @section('content')
-    <table>
-        <tr>
-            <th>Name</th>
-            <td>{{ $item->name }}</td>
-        </tr>
-        <tr>
-            <th>Mail</th>
-            <td>{{ $item->mail }}</td>
-        </tr>
-        <tr>
-            <th>Age</th>
-            <td>{{ $item->age }}</td>
-        </tr>
-    </table>
+@if ($items != null)
+    @foreach ($items as $item)
+        <table width="400px">
+            <tr>
+                <th width="50px">ID</th>
+                <td>{{ $item->id }}</td>
+            </tr>
+            <tr>
+                <th width="50px">Name</th>
+                <td>{{ $item->name }}</td>
+            </tr>
+            <tr>
+                <th width="50px">Mail</th>
+                <td>{{ $item->mail }}</td>
+            </tr>
+            <tr>
+                <th width="50px">Age</th>
+                <td>{{ $item->age }}</td>
+            </tr>
+        </table>
+    @endforeach
+@endif
     <a href="{{ route('/hello') }}">戻る</a>
 @endsection
 

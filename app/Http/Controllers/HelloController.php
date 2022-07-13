@@ -19,12 +19,14 @@ class HelloController extends Controller
 
     public function show(Request $request)
     {
-        $id = $request->id;
-        $item = DB::table('people')
-            ->where('id', $id)
-            ->first();
+        $min = $request->min;
+        $max = $request->max;
 
-        return view('hello.show', ['item' => $item]);
+        $items = DB::table('people')
+            ->whereRaw('age >= ? and age <= ?', [$min, $max])
+            ->get();
+
+        return view('hello.show', ['items' => $items]);
     }
 
     public function post(Request $request)
