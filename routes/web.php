@@ -22,6 +22,7 @@ Route::get('hello/', 'HelloController@index')->name('/hello');
 Route::post('hello/', 'HelloController@post');
 Route::get('hello/add', 'HelloController@add')->name('hello/add');
 Route::post('hello/add', 'HelloController@create');
+Route::get('hello/show', 'HelloController@show')->name('hello/show');
 Route::get('hello/edit', 'HelloController@edit')->name('hello/edit');
 Route::post('hello/edit', 'HelloController@update');
 Route::get('hello/del', 'HelloController@del')->name('hello/del');
