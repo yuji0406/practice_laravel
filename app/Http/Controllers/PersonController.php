@@ -17,4 +17,20 @@ class PersonController extends Controller
         $items = $this->person->all();
         return view('person.index', compact('items'));
     }
+
+    public function find(Request $request)
+    {
+        return view('person.find', ['input' => '']);
+    }
+
+    public function search(Request $request)
+    {
+        $item = $this->person->find($request->input);
+        $param = [
+            'input' => $request->input,
+            'item' => $item,
+        ];
+
+        return view('person.find', $param);
+    }
 }
