@@ -32,7 +32,7 @@ class PersonController extends Controller
             ->ageGreaterThan($min)
             ->ageLessThan($max)
             ->first();
-            
+
         $param = [
             'input' => $request->input,
             'item' => $item,
@@ -40,4 +40,51 @@ class PersonController extends Controller
 
         return view('person.find', $param);
     }
+
+    public function add(Request $request)
+    {
+        return view('person.add');
+    }
+
+    public function create(Request $request)
+    {
+        $this->validate($request, Person::$rules);
+
+        $person = new Person;
+
+        $form = $request->all();
+
+        unset($form['_token']);
+
+        $person->fill($form)->save();
+
+        return redirect('/person');
+    }
+
+    public function edit($id)
+    {
+        $form = $this->person
+            ->find($id)
+            ->first();
+
+        return view('person/edit', compact('form'));
+    }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, Person::$rules);
+
+        $person = $this->person
+            ->find($request->id)
+            ->first();
+
+        $form = $request->all();
+
+        unset($form['_token']);
+
+        $person->fill($form)->save();
+
+        return redirect('/person');
+    }
+
 }

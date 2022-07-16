@@ -30,3 +30,7 @@ Route::post('hello/del', 'HelloController@remove');
 Route::get('person', 'PersonController@index')->name('person');
 Route::get('person/find', 'PersonController@find')->name('person/find');
 Route::post('person/find', 'PersonController@search')->name('person/search');
+Route::get('person/add', 'PersonController@add')->name('person/add');
+Route::post('person/add', 'PersonController@create')->name('person/create');
+Route::get('person/edit{id}', 'PersonController@edit')->name('person/edit');
+Route::post('person/edit', 'PersonController@update')->name('person/update');
