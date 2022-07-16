@@ -8,27 +8,29 @@
 @endsection
 
 @section('content')
-    <p>{{ $msg }}</p>
-    @if(count($errors) > 0)
-        <p>入力に問題があります。再入力して下さい。</p>
-    @endif
-    <form action='/hello' method='post'>
-        <table>
-            @csrf
-            @if ($errors->has('msg'))
-                <tr>
-                    <th>ERROR</th>
-                    <td>{{ $errors->first('msg') }}</td>
-                </tr>
-            @endif
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Mail</th>
+            <th>Age</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach ($items as $item)
             <tr>
-                <th>Message: </th>
-                <td><input type="text" name='msg' value="{{ old('msg') }}"></td>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->mail }}</td>
+                <td>{{ $item->age }}</td>
+                <td><a href="{{ route('hello/edit', $item->id) }}">編集</a></td>
+                <td><a href="{{ route('hello/show', $item->id) }}">詳細</a></td>
+                <td><a href="{{ route('hello/del', $item->id) }}">削除</a></td>
             </tr>
-            <tr>
-                <th></th>
-                <td><input type="submit" value='send'></td>
-            </tr>
-        </table>
-    </form>
+        @endforeach
+    </table>
+    <a href="{{ route('hello/add') }}">Addページ</a>
+@endsection
+
+@section('footer')
+    copyright 2020 tuyano.
 @endsection
