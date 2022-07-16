@@ -27,3 +27,4 @@ Route::get('hello/edit/{id}', 'HelloController@edit')->name('hello/edit');
 Route::post('hello/edit', 'HelloController@update');
 Route::get('hello/del{id}', 'HelloController@del')->name('hello/del');
 Route::post('hello/del', 'HelloController@remove');
+Route::get('person', 'PersonController@index')->name('person');
