@@ -32,5 +32,7 @@ Route::get('person/find', 'PersonController@find')->name('person/find');
 Route::post('person/find', 'PersonController@search')->name('person/search');
 Route::get('person/add', 'PersonController@add')->name('person/add');
 Route::post('person/add', 'PersonController@create')->name('person/create');
-Route::get('person/edit{id}', 'PersonController@edit')->name('person/edit');
+Route::get('person/edit/{id}', 'PersonController@edit')->name('person/edit');
 Route::post('person/edit', 'PersonController@update')->name('person/update');
+Route::get('person/delete/{id}', 'PersonController@delete')->name('person/delete');
+Route::post('person/delete', 'PersonController@destroy')->name('person/destroy');

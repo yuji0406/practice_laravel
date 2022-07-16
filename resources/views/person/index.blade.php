@@ -16,6 +16,7 @@
             <tr>
                 <td>{{ $item->getData() }}</td>
                 <td><a href="{{ route('person/edit', $item->id) }}">Editページ</a></td>
+                <td><a href="{{ route('person/delete', $item->id) }}">Deleteページ</a></td>
             </tr>
         @endforeach
     </table>

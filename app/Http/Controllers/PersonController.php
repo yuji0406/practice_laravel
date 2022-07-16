@@ -64,8 +64,7 @@ class PersonController extends Controller
     public function edit($id)
     {
         $form = $this->person
-            ->find($id)
-            ->first();
+            ->find($id);
 
         return view('person/edit', compact('form'));
     }
@@ -75,14 +74,30 @@ class PersonController extends Controller
         $this->validate($request, Person::$rules);
 
         $person = $this->person
-            ->find($request->id)
-            ->first();
+            ->find($request->id);
 
         $form = $request->all();
 
         unset($form['_token']);
 
         $person->fill($form)->save();
+
+        return redirect('/person');
+    }
+
+    public function delete($id)
+    {
+        $form = $this->person
+            ->find($id);
+
+        return view('person/delete', compact('form'));
+    }
+
+    public function destroy(Request $request)
+    {
+        $this->person
+            ->find($request->id)
+            ->delete();
 
         return redirect('/person');
     }
