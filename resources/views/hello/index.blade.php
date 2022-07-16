@@ -22,9 +22,9 @@
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->mail }}</td>
                 <td>{{ $item->age }}</td>
-                <td><a href="{{ route('hello/edit') . '?id=' . $item->id }}">編集</a></td>
-                <td><a href="{{ route('hello/show') . '?id=' . $item->id }}">詳細</a></td>
-                <td><a href="{{ route('hello/del') . '?id=' . $item->id }}">削除</a></td>
+                <td><a href="{{ route('hello/edit', $item->id) }}">編集</a></td>
+                <td><a href="{{ route('hello/show', $item->id) }}">詳細</a></td>
+                <td><a href="{{ route('hello/del', $item->id) }}">削除</a></td>
             </tr>
         @endforeach
     </table>
