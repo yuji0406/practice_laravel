@@ -25,7 +25,14 @@ class PersonController extends Controller
 
     public function search(Request $request)
     {
-        $item = $this->person->find($request->input);
+        $min = $request->input;
+        $max = $min + 10;
+
+        $item = $this->person
+            ->ageGreaterThan($min)
+            ->ageLessThan($max)
+            ->first();
+            
         $param = [
             'input' => $request->input,
             'item' => $item,
