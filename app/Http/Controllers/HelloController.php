@@ -12,11 +12,12 @@ class HelloController extends Controller
 {
     public function index(Request $request)
     {
+        $sort = $request->sort;
         $items = DB::table('people')
-            ->orderBy('age', 'ASC')
-            ->get();
+            ->orderBy($sort, 'ASC')
+            ->simplePaginate(5);
 
-        return view('hello.index', ['items' => $items ]);
+        return view('hello.index', compact('items', 'sort'));
     }
 
     public function show(Request $request)
