@@ -12,10 +12,18 @@ class PersonController extends Controller
     {
         $this->person = $person;
     }
+
     public function index(Request $request)
     {
-        $items = $this->person->all();
-        return view('person.index', compact('items'));
+        $hasItems = $this->person
+            ->has('boards')
+            ->get();
+
+        $noItems = $this->person
+            ->doesntHave('boards')
+            ->get();
+
+        return view('person.index', compact('hasItems', 'noItems'));
     }
 
     public function find(Request $request)

@@ -27,6 +27,7 @@ Route::get('hello/edit/{id}', 'HelloController@edit')->name('hello/edit');
 Route::post('hello/edit', 'HelloController@update');
 Route::get('hello/del{id}', 'HelloController@del')->name('hello/del');
 Route::post('hello/del', 'HelloController@remove');
+
 Route::get('person', 'PersonController@index')->name('person');
 Route::get('person/find', 'PersonController@find')->name('person/find');
 Route::post('person/find', 'PersonController@search')->name('person/search');
@@ -36,3 +37,7 @@ Route::get('person/edit/{id}', 'PersonController@edit')->name('person/edit');
 Route::post('person/edit', 'PersonController@update')->name('person/update');
 Route::get('person/delete/{id}', 'PersonController@delete')->name('person/delete');
 Route::post('person/delete', 'PersonController@destroy')->name('person/destroy');
+
+Route::get('board/', 'BoardController@index')->name('board');
+Route::get('board/add', 'BoardController@add')->name('board/add');
+Route::post('board/add', 'BoardController@create')->name('board/create');
