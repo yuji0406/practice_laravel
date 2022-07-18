@@ -11,6 +11,7 @@
 |
 */
 
+use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\HelloMiddleware;
 
@@ -28,6 +29,8 @@ Route::post('hello/edit', 'HelloController@update');
 Route::get('hello/del{id}', 'HelloController@del')->name('hello/del');
 Route::post('hello/del', 'HelloController@remove');
 Route::get('hello/rest', 'HelloController@rest')->name('hello/rest');
+Route::get('hello/session', 'HelloController@ses_get')->name('session');
+Route::post('hello/session', 'HelloController@ses_put')->name('session/put');
 
 Route::get('person', 'PersonController@index')->name('person');
 Route::get('person/find', 'PersonController@find')->name('person/find');
@@ -44,3 +47,5 @@ Route::get('board/add', 'BoardController@add')->name('board/add');
 Route::post('board/add', 'BoardController@create')->name('board/create');
 
 Route::resource('rest', 'RestappController');
+
+
