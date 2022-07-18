@@ -41,3 +41,5 @@ Route::post('person/delete', 'PersonController@destroy')->name('person/destroy')
 Route::get('board/', 'BoardController@index')->name('board');
 Route::get('board/add', 'BoardController@add')->name('board/add');
 Route::post('board/add', 'BoardController@create')->name('board/create');
+
+Route::resource('rest', 'RestappController');
