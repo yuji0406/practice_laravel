@@ -1,4 +1,13 @@
 @extends('layouts.helloapp')
+<style>
+    .pagination { font-size: 10pt; }
+    .pagination li { display: inline-block; }
+    tr th a:link { color: white; }
+    tr th a:visited { color: white; }
+    tr th a:hover { color: white; }
+    tr th a:active { color: white; }
+
+</style>
 
 @section('title', 'Index')
 
@@ -10,9 +19,9 @@
 @section('content')
     <table>
         <tr>
-            <th>Name</th>
-            <th>Mail</th>
-            <th>Age</th>
+            <th><a href="/hello?sort=name">Name</a></th>
+            <th><a href="/hello?sort=mail">mail</a></th>
+            <th><a href="/hello?sort=age">age</a></th>
             <th></th>
             <th></th>
             <th></th>
@@ -26,9 +35,10 @@
                 <td><a href="{{ route('hello/show', $item->id) }}">詳細</a></td>
                 <td><a href="{{ route('hello/del', $item->id) }}">削除</a></td>
             </tr>
-        @endforeach
-    </table>
-    <a href="{{ route('hello/add') }}">Addページ</a>
+            @endforeach
+        </table>
+        {{ $items->appends(['sort' => $sort])->links() }}
+        <a href="{{ route('hello/add') }}">Addページ</a>
 @endsection
 
 @section('footer')
