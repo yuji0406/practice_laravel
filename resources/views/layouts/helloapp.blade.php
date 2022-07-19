@@ -20,6 +20,7 @@
             tr th a:hover { color: white; }
             tr th a:active { color: white; }
         </style>
+        <link rel="stylesheet" href="https://stackpath.bootstrap.com/boostrap/4.3.1/css/bootstrap.min.css">
     </head>
     <body>
         <h1>@yield('title')</h1>
