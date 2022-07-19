@@ -17,6 +17,12 @@
 @endsection
 
 @section('content')
+    @if (Auth::check())
+        <p>USER: {{ $user->name . '(' . $user->email . ')' }}</p>
+    @else
+        <p>※ログインしてません(<a href="/login">ログイン</a> | <a href="/registter">登録</a>)</p>
+    @endif
+
     <table>
         <tr>
             <th><a href="/hello?sort=name">Name</a></th>

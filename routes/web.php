@@ -11,9 +11,10 @@
 |
 */
 
-use App\Http\Controllers\HelloController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\HelloMiddleware;
+use App\Http\Controllers\HelloController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -48,4 +49,6 @@ Route::post('board/add', 'BoardController@create')->name('board/create');
 
 Route::resource('rest', 'RestappController');
 
+Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
