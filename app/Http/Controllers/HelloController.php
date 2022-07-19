@@ -2,21 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Person;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\HelloRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class HelloController extends Controller
 {
     public function index(Request $request)
     {
-        $items = DB::table('people')
-            ->orderBy('age', 'ASC')
-            ->get();
+        $user = Auth::user();
+        $sort = $request->sort;
+        $items = Person::orderBy($sort, 'ASC')
+            ->simplePaginate(5);
 
-        return view('hello.index', ['items' => $items ]);
+        return view('hello.index', compact('user', 'sort', 'items'));
     }
 
     public function show(Request $request)

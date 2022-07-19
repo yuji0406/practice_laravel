@@ -8,6 +8,12 @@
 @endsection
 
 @section('content')
+    @if (Auth::check())
+        <p>USER: {{ $user->name . '(' . $user->email . ')' }}</p>
+    @else
+        <p>※ログインしてません(<a href="/login">ログイン</a> | <a href="/registter">登録</a>)</p>
+    @endif
+
     <table>
         <tr>
             <th>Name</th>
@@ -29,6 +35,7 @@
         @endforeach
     </table>
     <a href="{{ route('hello/add') }}">Addページ</a>
+    {{ $items->links() }}
 @endsection
 
 @section('footer')
