@@ -22,6 +22,8 @@ Route::get('/', function () {
 
 Route::get('hello/', 'HelloController@index')->name('/hello')
     ->middleware('auth');
+Route::get('hello/auth', 'HelloController@getAuth');
+Route::post('hello/auth', 'HelloController@postAuth');
 Route::post('hello/', 'HelloController@post');
 Route::get('hello/add', 'HelloController@add')->name('hello/add');
 Route::post('hello/add', 'HelloController@create');
