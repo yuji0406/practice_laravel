@@ -3,8 +3,9 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
-use Faker\Generator as Faker;
+use App\Person;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,10 +28,10 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(App\Person::class, function (Faker $faker) {
+$factory->define(Person::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'email' => $faker->safeEmail,
-        'age' => $faker->int(1, 99),
+        'mail' => $faker->safeEmail,
+        'age' => random_int(1, 99),
     ];
 });

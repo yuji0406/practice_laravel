@@ -2,23 +2,45 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\User;
+use App\Person;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class HelloTest extends TestCase
 {
+    use DatabaseMigrations;
+
     public function testHello()
     {
-        $this->assertTrue(true);
+        factory(User::class)->create([
+            'name' => 'AAA',
+            'email' => 'test@ff.com',
+            'password' => 'password',
+        ]);
 
-        $arr = [];
-        $this->assertEmpty($arr);
+        factory(User::class, 10)->create();
 
-        $msg = 'Hello';
-        $this->assertEquals('Hello', $msg);
+        $this->assertDatabaseHas('users', [
+            'name' => 'AAA',
+            'email' => 'test@ff.com',
+            'password' => 'password',
+        ]);
 
-        $n = random_int(0, 100);
-        $this->assertLessThan(100, $n);
+        factory(Person::class)->create([
+            'name' => 'AAA',
+            'mail' => 'test@gg.com',
+            'age' => 123,
+        ]);
+
+        factory(Person::class, 10)->create();
+
+        $this->assertDatabaseHas('people', [
+            'name' => 'AAA',
+            'mail' => 'test@gg.com',
+            'age' => 123,
+        ]);
     }
 }
